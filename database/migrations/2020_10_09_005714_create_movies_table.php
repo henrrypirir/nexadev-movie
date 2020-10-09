@@ -15,6 +15,7 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
+            $table->string('imdbID')->unique();
             $table->string('title');
             $table->text('image');
             $table->mediumText('genre');

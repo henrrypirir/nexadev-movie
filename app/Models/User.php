@@ -57,4 +57,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function movies()
+    {
+        return $this->belongsToMany('App\Models\Movie');
+    }
 }

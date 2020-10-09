@@ -29,10 +29,20 @@
 
                                 <footer class="flex items-center justify-between leading-none p-2 md:p-4">
                                     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ $movie['Type'] }}</span>
-                                    <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                                        <span class="hidden">Like</span>
-                                        <i class="far fa-heart"></i>
-                                    </a>
+                                    @if(\Illuminate\Support\Facades\Auth::user()
+                                            ->movies()
+                                            ->where('imdbID', $movie['imdbID'])
+                                            ->first())
+                                        <button wire:click="removeMovieFav('{{ $movie['imdbID'] }}')">
+                                            <span class="hidden">Delete</span>
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    @else
+                                        <button wire:click="addMovieFav('{{ $movie['imdbID'] }}')">
+                                            <span class="hidden">Like</span>
+                                            <i class="far fa-heart"></i>
+                                        </button>
+                                    @endif
                                 </footer>
 
                             </article>
@@ -40,5 +50,18 @@
                 @endforeach
             </div>
         </div>
+
+        @if (session()->has('message'))
+            <div id="alert">
+                <script>
+                    Swal.fire({
+                        text: "{{ session('message.description') }}",
+                        icon: "{{ strtolower(session('message.type')) }}"
+                    }).then(() => {
+                        document.getElementById('alert').innerHTML = "";
+                    });
+                </script>
+            </div>
+        @endif
     @endif
 </div>
