@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Movie;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -17,7 +15,7 @@ class MovieController extends Controller
     public function index(Request $request)
     {
         if ($request->user()->tokenCan('read')){
-            return $request->user()->movies()->without('users')->get();
+            return $request->user()->movies()->get();
         }
 
         return response()->json(['error' => 'Unauthenticated.'], 401);
