@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
+        <script src="https://kit.fontawesome.com/15a2401c9c.js" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         @livewireStyles
