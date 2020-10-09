@@ -12,7 +12,7 @@ class SearchMovies extends Component
     public function render()
     {
         return view('livewire.search-movies', [
-            'arrMovies' => Http::get('https://www.omdbapi.com/', [
+            'arrMovies' => Http::get(env('OMDB_API_URL'), [
                 'apikey' => env('OMDB_API_KEY'),
                 's' => $this->search
             ])->json()
