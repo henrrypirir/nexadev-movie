@@ -24,7 +24,7 @@ class SearchMovies extends Component
     }
 
     public function addMovieFav($movie_id){
-        $arrResponse = DB::transaction(function () use ($movie_id){
+        DB::transaction(function () use ($movie_id){
             try {
                 if ($movie = Movie::where('imdbID', $movie_id)->first()){
                     $movie->users()->syncWithoutDetaching(Auth::user());
@@ -64,7 +64,7 @@ class SearchMovies extends Component
     }
 
     public function removeMovieFav($movie_id){
-        $arrResponse = DB::transaction(function () use ($movie_id){
+        DB::transaction(function () use ($movie_id){
             try {
                 if ($movie = Auth::user()->movies()
                     ->where('imdbID', $movie_id)
