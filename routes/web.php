@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware'=>['auth:sanctum', 'verified']], function (){
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/movie/favs', '\App\Http\Livewire\Movie\Favs')->name('movie.favs');
+});
