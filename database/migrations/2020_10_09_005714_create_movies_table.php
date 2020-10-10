@@ -18,6 +18,7 @@ class CreateMoviesTable extends Migration
             $table->string('imdbID')->unique();
             $table->string('title');
             $table->text('image');
+            $table->string('type');
             $table->mediumText('genre');
             $table->text('description');
             $table->decimal('rating', 2,1);

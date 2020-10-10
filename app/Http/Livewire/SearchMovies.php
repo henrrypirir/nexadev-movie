@@ -38,6 +38,7 @@ class SearchMovies extends Component
                     $movie->imdbID = $apiMovie['imdbID'];
                     $movie->title = $apiMovie['Title'];
                     $movie->image = $apiMovie['Poster'];
+                    $movie->type = $apiMovie['Type'];
                     $movie->genre = $apiMovie['Genre'];
                     $movie->description = $apiMovie['Plot'];
                     $movie->rating = $apiMovie['imdbRating'];
